@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiPractice9.Models;
 
 namespace WebApiPractice9
 {
@@ -30,6 +31,17 @@ namespace WebApiPractice9
             }
             return Ok(book);
 
+        }
+        [HttpPost]
+        public ActionResult<Book> AddBook(Book newBook)
+        {
+            if(newBook == null)
+            {
+                return BadRequest();
+            }
+
+            books.Add(newBook);
+            return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
         }
 
     }
