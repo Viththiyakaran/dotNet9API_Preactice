@@ -1,0 +1,23 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebApiPractice9
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BookController : ControllerBase
+    {
+        static private List<Models.Book> books = new List<Models.Book>
+        {
+            new Models.Book { Id = 1, Title = "Book One", Author = "Author A", Price = 9.99M },
+            new Models.Book { Id = 2, Title = "Book Two", Author = "Author B", Price = 14.99M },
+            new Models.Book { Id = 3, Title = "Book Three", Author = "Author C", Price = 19.99M }
+        };
+
+        [HttpGet]
+        public ActionResult<List<Models.Book>> GetBooks()
+        {
+            return Ok(books);
+        }
+    }
+}
