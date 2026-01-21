@@ -22,7 +22,7 @@ namespace WebApiPractice9
         }
 
         [HttpGet("{id}")]
-        public ActionResult<List<Models.Book>> GetBookById( int id)
+        public ActionResult<List<Models.Book>> GetBookById(int id)
         {
             var book = books.FirstOrDefault(b => b.Id == id);
             if (book == null)
@@ -35,7 +35,7 @@ namespace WebApiPractice9
         [HttpPost]
         public ActionResult<Book> AddBook(Book newBook)
         {
-            if(newBook == null)
+            if (newBook == null)
             {
                 return BadRequest();
             }
@@ -43,6 +43,21 @@ namespace WebApiPractice9
             books.Add(newBook);
             return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateBook(int id, Book updatedBook)
+        {
+            var existingBook = books.FirstOrDefault(b => b.Id == id);
+            if (existingBook == null)
+            {
+                return NotFound();
+            }
+            existingBook.Title = updatedBook.Title;
+            existingBook.Author = updatedBook.Author;
+            existingBook.Price = updatedBook.Price;
+            //existingBook.Id = updatedBook.Id;
+            return NoContent();
+            
 
+        }
     }
 }
