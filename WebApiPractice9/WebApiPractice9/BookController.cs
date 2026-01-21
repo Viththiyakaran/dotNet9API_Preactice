@@ -19,5 +19,18 @@ namespace WebApiPractice9
         {
             return Ok(books);
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<List<Models.Book>> GetBookById( int id)
+        {
+            var book = books.FirstOrDefault(b => b.Id == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return Ok(book);
+
+        }
+
     }
 }
