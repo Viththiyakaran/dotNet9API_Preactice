@@ -1,6 +1,37 @@
-@WebApiPractice9_HostAddress = http://localhost:5271
+@rootURL= http://localhost:5271
 
-GET {{WebApiPractice9_HostAddress}}/weatherforecast/
+GET {{rootURL}}/weatherforecast/
 Accept: application/json
 
 ###
+GET {{rootURL}}/api/Book/
+Accept: application/json
+
+###
+###
+GET {{rootURL}}/api/Book/2
+Accept: application/json
+
+###
+post {{rootURL}}/api/Book/
+Content-Type: application/json
+{
+  "id": 10,
+  "title": "Book Two",
+  "author": "Author B",
+  "price": 14.99
+}
+
+###
+PUT {{rootURL}}/api/Book/3
+Content-Type: application/json
+{
+  
+  "title": "Updated Book Title",
+  "author": "Updated Author",
+  "price": 19.99
+}
+
+###
+DELETE {{rootURL}}/api/Book/3
+Accept: application/json
